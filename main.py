@@ -19,21 +19,19 @@ with open('recipes.txt', 'r') as f:
 
 def get_shop_list_by_dishes(dishes, person_count):
     count_food = {}
-
+    count_ing = {}
     for inp_food in dishes:
         ingridients = cook_book[inp_food]
         for ing_value in ingridients:
             ingridient_name = ing_value['ingridient_name']
-            if ingridient_name not in count_food:
-                count_ing = {}
-                quantity = ing_value['quantity']
-                measure = ing_value['measure']
-                count_ing['quantity'] = int(quantity) * person_count
-                count_ing['measure'] = measure
-                count_food[ingridient_name] = count_ing
+            quantity = ing_value['quantity']
+            measure = ing_value['measure']
+            count_ing['measure'] = measure
+            if ingridient_name in count_food:
+              count_food[ingridient_name]['quantity'] += int(quantity)
             else:
                 count_food[ingridient_name] = {'measure': measure, 'quantity': int(quantity) * person_count}
     pprint(count_food)
 
 
-get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
+get_shop_list_by_dishes(['Омлет', 'Омлет'], 1)
