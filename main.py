@@ -28,10 +28,10 @@ def get_shop_list_by_dishes(dishes, person_count):
             measure = ing_value['measure']
             count_ing['measure'] = measure
             if ingridient_name in count_food:
-              count_food[ingridient_name]['quantity'] += int(quantity)
+              count_food[ingridient_name]['quantity'] += int(quantity) * person_count
             else:
                 count_food[ingridient_name] = {'measure': measure, 'quantity': int(quantity) * person_count}
     pprint(count_food)
 
 
-get_shop_list_by_dishes(['Омлет', 'Омлет'], 1)
+get_shop_list_by_dishes(['Омлет', 'Омлет'], 2)
